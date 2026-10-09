@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: quickdrop-postgres-new
+    environment:
+      POSTGRES_DB: quickdrop_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5434:5432"
+    volumes:
+      - quickdrop_postgres_data:/var/lib/postgresql/data
+    networks:
+      - quickdrop-network
+
+volumes:
+  quickdrop_postgres_data:
+
+networks:
+  quickdrop-network:
+    driver: bridge
